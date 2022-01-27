@@ -20,7 +20,9 @@ func main() {
 
 	cs7, _ := crazystrings.NewCrazyString("composition")
 	cs8, _ := crazystrings.NewBigCrazyString("composition")
-	cs9, _ := crazystrings.NewFatCrazyString("composition")
+
+	cs9, _ := crazystrings.NewFatCrazyString("ooprogramming")
+	cs10, _ := crazystrings.NewVeryFatCrazyString("ooprogramming", 3)
 
 	strs = append(strs, cs1)
 	strs = append(strs, cs2)
@@ -31,6 +33,7 @@ func main() {
 	strs = append(strs, cs7)
 	strs = append(strs, cs8)
 	strs = append(strs, cs9)
+	strs = append(strs, cs10)
 
 	for _, str := range strs {
 		fmt.Printf("%T : %s\n", str, str.Scramble())

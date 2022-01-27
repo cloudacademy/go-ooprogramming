@@ -31,6 +31,6 @@ func main() {
 	strs = append(strs, cs8)
 
 	for _, str := range strs {
-		fmt.Println(str.Scramble())
+		fmt.Printf("%T : %s\n", str, str.Scramble())
 	}
 }

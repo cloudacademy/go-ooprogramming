@@ -42,24 +42,24 @@ func NewBigCrazyString(data string) (bigcrazystring, error) {
 
 // ==========================
 
-func NewFatCrazyString(data string) (fatcrazystring, error) {
+func NewFatCrazyString(data string) (*fatcrazystring, error) {
 	if len(data) == 0 {
-		return fatcrazystring{}, errors.New("string empty")
+		return nil, errors.New("string empty")
 	}
 
 	cs, _ := NewCrazyString(data)
 
-	return fatcrazystring{String: cs}, nil
+	return &fatcrazystring{String: cs}, nil
 }
 
-func NewVeryFatCrazyString(data string, size int) (veryfatcrazystring, error) {
+func NewVeryFatCrazyString(data string, size int) (*veryfatcrazystring, error) {
 	if len(data) == 0 {
-		return veryfatcrazystring{}, errors.New("string empty")
+		return nil, errors.New("string empty")
 	}
 
 	cs, _ := NewFatCrazyString(data)
 
-	return veryfatcrazystring{FatString: cs, Size: size}, nil
+	return &veryfatcrazystring{FatString: *cs, Size: size}, nil
 }
 
 // ==========================
@@ -78,13 +78,13 @@ func (c bigcrazystring) Scramble() string {
 	return strings.ToUpper(crazystring)
 }
 
-func (c fatcrazystring) Scramble() string {
+func (c *fatcrazystring) Scramble() string {
 	crazystring := c.String.Scramble()
 
 	return expand(crazystring, "-", 1)
 }
 
-func (c veryfatcrazystring) Scramble() string {
+func (c *veryfatcrazystring) Scramble() string {
 	crazystring := c.FatString.String.Scramble()
 	size := c.Size
 
